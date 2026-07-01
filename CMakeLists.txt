@@ -13,6 +13,11 @@ endif()
 add_executable(imgcomp
     src/main.cpp
     src/bitmap.cpp
+    src/dct.cpp
+    src/quant.cpp
+    src/rle.cpp
+    src/encode.cpp
+    src/decode.cpp
 )
 
 add_executable(make_test_image
