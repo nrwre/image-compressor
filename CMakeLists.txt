@@ -16,6 +16,8 @@ add_executable(imgcomp
     src/dct.cpp
     src/quant.cpp
     src/rle.cpp
+    src/color.cpp
+    src/chroma.cpp
     src/encode.cpp
     src/decode.cpp
 )

@@ -8,7 +8,7 @@ namespace {
 
 void print_usage() {
     std::cout << "usage:\n"
-              << "  imgcomp compress <in.bmp> <out.icc> [quality 1-100]\n"
+              << "  imgcomp compress <in.bmp> <out.icc> [quality 1-100] [--gray]\n"
               << "  imgcomp decompress <in.icc> <out.bmp>\n";
 }
 
@@ -26,8 +26,17 @@ int main(int argc, char** argv) {
 
     try {
         if (mode == "compress") {
-            int quality = argc > 4 ? std::atoi(argv[4]) : 75;
-            compress_bmp(in_path, out_path, quality);
+            int quality = 75;
+            bool color = true;
+            for (int i = 4; i < argc; i++) {
+                std::string arg = argv[i];
+                if (arg == "--gray") {
+                    color = false;
+                } else {
+                    quality = std::atoi(argv[i]);
+                }
+            }
+            compress_bmp(in_path, out_path, quality, color);
         } else if (mode == "decompress") {
             decompress_file(in_path, out_path);
         } else {
